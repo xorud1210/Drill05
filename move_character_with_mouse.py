@@ -24,7 +24,27 @@ def teleport_hand():
     x_hand, y_hand = random.randint(0,TUK_WIDTH),random.randint(0,TUK_HEIGHT)
 
 def move_character():
-    pass
+    global frame, x_cha, y_cha, x_hand, y_hand
+    x1, y1 = x_cha, y_cha       # 시작점
+    x2, y2 = x_hand, y_hand     # 도착점
+
+    # 캐릭터 이동하면서 그려주기
+    for i in range(0, 100, 1):
+        t = i / 100
+
+        x = (1 - t) * x1 + t * x2
+        y = (1 - t) * y1 + t * y2
+
+        clear_canvas()
+        TUK_ground.draw(TUK_WIDTH // 2, TUK_HEIGHT // 2)
+        hand.draw(x_hand, y_hand)
+        character.clip_draw(frame * 100, 100 * 1, 100, 100, x, y)
+        update_canvas()
+        frame = (frame + 1) % 8
+        delay(0.01)
+
+    # 이동 후에 캐릭터 좌표 변경
+    x_cha, y_cha = x_hand, y_hand
 
 
 running = True
@@ -36,12 +56,7 @@ hide_cursor()
 
 while running:
     teleport_hand()
-    clear_canvas()
-    TUK_ground.draw(TUK_WIDTH // 2, TUK_HEIGHT // 2)
-    hand.draw(x_hand, y_hand)
-    update_canvas()
-    delay(0.1)
-    #move_character()
+    move_character()
     handle_events()
 
 close_canvas()
