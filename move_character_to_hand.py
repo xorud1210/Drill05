@@ -21,7 +21,7 @@ def handle_events():
 
 def teleport_hand():
     global x_hand, y_hand
-    x_hand, y_hand = random.randint(0,TUK_WIDTH),random.randint(0,TUK_HEIGHT)
+    x_hand, y_hand = random.randint(0, TUK_WIDTH), random.randint(0, TUK_HEIGHT)
 
 def move_character():
     global frame, x_cha, y_cha, x_hand, y_hand
@@ -52,7 +52,7 @@ def move_character():
 
 running = True
 x_cha, y_cha = TUK_WIDTH // 2, TUK_HEIGHT // 2
-x_hand, y_hand = random.randint(0,TUK_WIDTH),random.randint(0,TUK_HEIGHT)
+x_hand, y_hand = random.randint(0, TUK_WIDTH), random.randint(0, TUK_HEIGHT)
 
 frame = 0
 hide_cursor()
@@ -61,9 +61,4 @@ while running:
     teleport_hand()
     move_character()
     handle_events()
-
 close_canvas()
-
-
-
-
